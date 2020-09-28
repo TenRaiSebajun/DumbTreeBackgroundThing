@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ProcessingWork:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProcessingWork_jar</output-path>
+    <root id="archive" name="ProcessingWork.jar">
+      <element id="module-output" name="ProcessingWork" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Program Files/processing-3.5.4/core/library/core.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
