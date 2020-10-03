@@ -4,12 +4,11 @@ import processing.core.PApplet;
 import processing.core.PVector;
 import processing.data.IntList;
 import utils.gen.ColourGen;
-
 import java.util.ArrayList;
 
 public class Ambience {
 
-    private PApplet p;
+    private final PApplet p;
     private final ArrayList<IntList> backgroundPalette;
     private ColourGen colourGen;
 
