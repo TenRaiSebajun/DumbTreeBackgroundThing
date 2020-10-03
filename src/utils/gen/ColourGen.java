@@ -63,16 +63,16 @@ public class ColourGen{
         return lowerBoundColour;
     }
 
-    IntList getShadowOfColour(IntList colour)
-    {
-        IntList colourShadow = colour.copy();
-        int secondaryValue = getSecondaryValueOfColour(colourShadow);
-        int primaryValueIndex = colourShadow.index(255);
-        int secondaryValueIndex = colourShadow.index(secondaryValue);
-        colourShadow.set(primaryValueIndex, 128);
-        colourShadow.set(secondaryValueIndex, (int) secondaryValue/2);
-        return colourShadow;
+    public IntList getShadow(IntList colour) {
+        IntList shadowColour = new IntList();
+        for (int value: colour) {
+            int changeInValue = value - value/2;
+            shadowColour.append(changeInValue);
+        }
+        return shadowColour;
     }
+
+
 
     public IntList getShadowMiddleGround(IntList colour)
     {
@@ -91,19 +91,19 @@ public class ColourGen{
 
         ArrayList<IntList> medianColour = new ArrayList<IntList>();
         IntList primaryColour = getPrimaryColour();
-        IntList primaryColourShadow = getShadowOfColour(primaryColour);
+        IntList primaryColourShadow = getShadow(primaryColour);
         medianColour.add(primaryColour);
         medianColour.add(primaryColourShadow);
 
         ArrayList<IntList> maxColour = new ArrayList<IntList>();
         IntList upperBoundColour = getUpperBoundColour(primaryColour, colourRange);
-        IntList upperBoundColourShadow = getShadowOfColour(upperBoundColour);
+        IntList upperBoundColourShadow = getShadow(upperBoundColour);
         maxColour.add(upperBoundColour);
         maxColour.add(upperBoundColourShadow);
 
         ArrayList<IntList> minColour = new ArrayList<IntList>();
         IntList lowerBoundColour = getLowerBoundColour(primaryColour, colourRange);
-        IntList lowerBoundColourShadow = getShadowOfColour(lowerBoundColour);
+        IntList lowerBoundColourShadow = getShadow(lowerBoundColour);
         minColour.add(lowerBoundColour);
         minColour.add(lowerBoundColourShadow);
 

@@ -4,7 +4,6 @@ import processing.core.PApplet;
 import processing.core.PVector;
 import processing.data.IntList;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import utils.drawing.DrawingUtils;
@@ -14,8 +13,6 @@ import utils.object.manipulation.ObjectTransformation;
 import utils.gen.MechanicalGen;
 import utils.gen.RandomUtils;
 import main.landscape.general.Ambience;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class MainClass extends PApplet {
 
@@ -44,7 +41,8 @@ public class MainClass extends PApplet {
     ArrayList<IntList> leafPalette = palette.get(2);
     ArrayList<IntList> branchPalette = colourManipulation.pasteliseColourPalette(palette.get(1));
     ArrayList<IntList> backgroundPalette = colourManipulation.pasteliseColourPalette(palette.get(0));
-    IntList moonColour = colourManipulation.whitenizeColour(backgroundPalette.get(0));
+    ArrayList<IntList> moonColour = new ArrayList<IntList>();
+//            moonColour.add(colourManipulation.whitenizeColour(backgroundPalette.get(0)));
     IntList globalShadowColour = new IntList(backgroundPalette.get(1).get(0)/1.5,backgroundPalette.get(1).get(1)/1.5,backgroundPalette.get(1).get(2)/1.5);
     IntList ambientMidColour = colourGen.getShadowMiddleGround(backgroundPalette.get(0));
     Ambience ambience = new Ambience(this,backgroundPalette);
@@ -69,7 +67,9 @@ public class MainClass extends PApplet {
     {
         int scaling = 2;
         ambience.createBackground();
-        ambience.makeSunMoon(moonColour,rightBool);
+        moonColour.add(colourManipulation.whitenizeColour(backgroundPalette.get(0)));
+        moonColour.add(colourGen.getShadow(moonColour.get(0)));
+        ambience.makeSunMoon(moonColour,rightBool,backgroundPalette);
         ambience.reEstablishHorizon(ambientMidColour);
         createForest(20,20,1000,600);
         drawTree(new PVector(400,900), mechanicalGen.angleOfAccidenceGenerator(radians(270), 10), 100);
