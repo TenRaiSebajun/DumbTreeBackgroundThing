@@ -28,7 +28,7 @@ public class Forest {
     private final RandomUtils rand;
 
 
-    ArrayList<IntList> leafPalette = new ArrayList<IntList>();
+    ArrayList<IntList> leafPalette;
     ArrayList<IntList> branchPalette;
     ArrayList<IntList> backgroundPalette;
     IntList globalShadowColour;
@@ -200,7 +200,7 @@ public class Forest {
                     for (PVector vector : vertexList) {
                         vertexList.set(vertexList.indexOf(vector), new PVector(vector.y + vectorDisplacement.x, vector.x / 2 + vectorDisplacement.y));
                     }
-                    draw.drawShapeWithColour(vertexList, globalShadowColour);
+                    draw.drawShapeWithColour(vertexList, globalShadowColour,false,0);
                 }
             }
         }
@@ -218,7 +218,7 @@ public class Forest {
                     for (PVector vector : vertexList) {
                         vertexList.set(vertexList.indexOf(vector), new PVector(canvasSize - vector.y + vectorDisplacement.x, vector.x / 2 + vectorDisplacement.y));
                     }
-                    draw.drawShapeWithColour(vertexList, globalShadowColour);
+                    draw.drawShapeWithColour(vertexList, globalShadowColour,false,0);
                 }
             }
         }

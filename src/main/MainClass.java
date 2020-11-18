@@ -1,6 +1,7 @@
 package main;
 
 import main.landscape.Forest;
+import main.landscape.Mountains;
 import processing.core.PApplet;
 import processing.core.PVector;
 import processing.data.IntList;
@@ -35,8 +36,6 @@ public class MainClass extends PApplet {
     ArrayList<ArrayList<PVector>> globalShadowList = new ArrayList<ArrayList<PVector>>();
     ArrayList<ArrayList<ArrayList<PVector>>> globalShadowListCombined = new ArrayList<ArrayList<ArrayList<PVector>>>();
 
-    ArrayList<IntList> leafPalette = palette.get(2);
-    ArrayList<IntList> branchPalette = colourManipulation.pasteliseColourPalette(palette.get(1));
     ArrayList<IntList> backgroundPalette = colourManipulation.pasteliseColourPalette(palette.get(0));
     ArrayList<IntList> moonColour = new ArrayList<IntList>();
     IntList globalShadowColour = new IntList(backgroundPalette.get(1).get(0)/1.5,backgroundPalette.get(1).get(1)/1.5,backgroundPalette.get(1).get(2)/1.5);
@@ -46,6 +45,8 @@ public class MainClass extends PApplet {
 
 
     Forest forest = new Forest(this,globalShadowList,globalShadowListCombined,globalShapeList,globalColourList, palette);
+
+    Mountains mountains = new Mountains(this, ambientMidColour);
 
 
     public void setup()
@@ -68,6 +69,7 @@ public class MainClass extends PApplet {
         moonColour.add(colourManipulation.whitenizeColour(backgroundPalette.get(0)));
         moonColour.add(colourGen.getShadow(moonColour.get(0)));
         ambience.makeSunMoon(moonColour,rightBool,backgroundPalette);
+        mountains.drawMountainRange();
         ambience.reEstablishHorizon(ambientMidColour);
 
         forest.createForest(20,20,1000,600);
@@ -77,8 +79,8 @@ public class MainClass extends PApplet {
         objectTrans.centerToAPoint(scaledShapeList,rightBool);
         forest.drawTreeShadow(globalShadowListCombined,1000,rightBool);
         draw.drawCollection(scaledShapeList,globalColourList);
-//        String chromeBackroundPath = "C:/Users/UserHere/AppData/Local/Google/Chrome/User Data/Default";
-//        save(chromeBackroundPath + "/background.png");
+        String chromeBackroundPath = "C:/Users/OliverDickson/Desktop";
+        save(chromeBackroundPath + "/background.png");
 
     }
 }

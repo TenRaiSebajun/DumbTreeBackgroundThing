@@ -50,4 +50,12 @@ public class ColourManipulation{
         return whiteColour;
     }
 
+    public IntList lightenColour(IntList colour, double byDegree) {
+        IntList lightenedColour = new IntList();
+        for (int value: colour) {
+            lightenedColour.append(value + (int) ((256-value)/byDegree));
+        }
+        return lightenedColour;
+    }
+
 }

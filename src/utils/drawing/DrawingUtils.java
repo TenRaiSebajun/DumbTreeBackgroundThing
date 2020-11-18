@@ -14,10 +14,10 @@ public class DrawingUtils {
         p =pa;
     }
 
-    public void drawShapeWithColour(ArrayList<PVector> vertexList, IntList colourValues)
+    public void drawShapeWithColour(ArrayList<PVector> vertexList, IntList colourValues, boolean stroke, int strokeColour)
     {
+        if (stroke) p.stroke(strokeColour); else p.noStroke();
         p.beginShape();
-        p.noStroke();
         for (PVector currentVertex : vertexList) {
             p.vertex(currentVertex.x, currentVertex.y);
         }
@@ -28,7 +28,7 @@ public class DrawingUtils {
     public void drawCollection(ArrayList<ArrayList<PVector>> shapeCollection, ArrayList<IntList> paletteCollection){
         for (int i = 0; i <  shapeCollection.size(); i++)
         {
-            drawShapeWithColour(shapeCollection.get(i),paletteCollection.get(i));
+            drawShapeWithColour(shapeCollection.get(i),paletteCollection.get(i),false,0);
         }
     }
 
